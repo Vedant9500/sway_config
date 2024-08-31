@@ -86,6 +86,12 @@
         "tooltip": false,
     },
 
+"cpu": {
+	"interval": 1,
+	"format": "{icon0}{icon1}{icon2}{icon3} {usage:>2}% ",
+	"format-icons": ["▁", "▂", "▃", "▄", "▅", "▆","▇", "█"],
+    },
+
     "temperature": {
         // "thermal-zone": 2,
         // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
