@@ -5,9 +5,9 @@
     "margin": "4 20 0 20",
     "width": "100%", // Waybar width
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "custom/pacman"],
+    "modules-left": ["sway/workspaces", "custom/pacman","tray"],
     "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "custom/mem", "backlight", "battery", "tray"],
+    "modules-right": ["pulseaudio", "custom/mem", "backlight", "battery"],
 
 
     //***************************
