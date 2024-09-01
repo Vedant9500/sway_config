@@ -1,129 +1,71 @@
 {
-    "layer": "bottom", // Waybar at top layer
-    "position": "top", // Waybar position (top|bottom|left|right)
-    "height": 20, // Waybar height (to be removed for auto height)
-    "margin": "4 20 0 20",
-    "width": "100%", // Waybar width
-    // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "custom/pacman","tray"],
-    "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "custom/mem", "backlight", "battery"],
+  "layer": "top",
+  "position": "top",
+  "margin": "4 20 0 20",
+  "width": "100%",
 
+  "modules-left": ["sway/workspaces", "custom/pacman", "tray"],
+  "modules-center": ["clock"],
+  "modules-right": ["pulseaudio", "custom/mem", "cpu", "backlight", "battery"],
 
-    //***************************
-    //*  Modules configuration  *
-    //***************************
+  "sway/workspaces": {
+    "disable-scroll": false
+  },
 
-    "sway/workspaces": {
-        "disable-scroll": false,
-        "persistent_workspaces": {
-            "1": [],
-            "2": [],
-            "3": [],
-            "4": [],
-        },
+  "custom/pacman": {
+    "format": "{} ",
+    "interval": 3600,
+    "exec": "(checkupdates; pacman -Qm | aur vercmp) | wc -l",
+    "on-click": "foot sh -c 'yay; echo Done - Press enter to exit; read'; pkill -SIGRTMIN+8 waybar",
+    "signal": 8,
+    "tooltip": false
+  },
+
+  "clock": {
+    "format": "{:%a, %d %b, %I:%M %p}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+
+  "pulseaudio": {
+    "reverse-scrolling": 1,
+    "format": "{volume}% {icon} {format_source}",
+    "format-bluetooth": "{volume}% {icon} {format_source}",
+    "format-muted": "婢 {format_source}",
+    "format-icons": {
+      "default": ["奄", "奔", "墳"]
     },
+    "on-click": "pavucontrol",
+    "min-length": 13
+  },
 
-    "sway/language": {
-        "format": "{} ",
-	"min-length": 5,
-	"tooltip": false
-    },
+  "cpu": {
+    "interval": 5,
+    "format": "{usage:>2}% ",
+    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
+  },
 
-    "keyboard-state": {
-        //"numlock": true,
-        "capslock": true,
-        "format": "{name} {icon} ",
-        "format-icons": {
-            "locked": " ",
-            "unlocked": ""
-        },
-    },
+  "custom/mem": {
+    "format": "{} ",
+    "interval": 10,
+    "exec": "free -h | awk '/Mem:/{printf $3}'",
+    "tooltip": false
+  },
 
-    "custom/pacman": {
-        "format": "{} ",
-        "interval": 3600,                     			// every hour
-        "exec": "(checkupdates;pacman -Qm | aur vercmp) | wc -l",	// # of updates
-        "exec-if": "exit 0",                  			// always run; consider advanced run conditions
-        "on-click": "foot sh -c 'yay; echo Done - Press enter to exit; read'; pkill -SIGRTMIN+8 waybar", // update system
-        "signal": 8,
-        "tooltip": false,
-    },
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{percent}% {icon}",
+    "format-icons": ["", "", "", "", "", "", ""],
+    "min-length": 7
+  },
 
-    "clock": {
-        // "timezone": "America/New_York",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format": "{:%a, %d %b, %I:%M %p}"
-    },
+  "battery": {
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}% ",
+    "format-plugged": "{capacity}% ",
+    "format-icons": ["", "", "", "", "", "", "", "", "", ""]
+  },
 
-
-    "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "reverse-scrolling": 1,
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": "婢 {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["奄", "奔", "墳"]
-        },
-        "on-click": "pavucontrol",
-        "min-length": 13,
-    },
-
-    "custom/mem": {
-        "format": "{} ",
-        "interval": 3,
-        "exec": "free -h | awk '/Mem:/{printf $3}'",
-        "tooltip": false,
-    },
-
-"cpu": {
-	"interval": 1,
-	"format": "{icon0}{icon1}{icon2}{icon3} {usage:>2}% ",
-	"format-icons": ["▁", "▂", "▃", "▄", "▅", "▆","▇", "█"],
-    },
-
-    "temperature": {
-        // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        "critical-threshold": 80,
-        // "format-critical": "{temperatureC}°C {icon}",
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", "", "", ""],
-        "tooltip": false,
-    },
-
-    "backlight": {
-        "device": "intel_backlight",
-        "format": "{percent}% {icon}",
-        "format-icons": ["","","","", "", "", ""],
-        "min-length": 7,
-    },
-
-    "battery": {
-        "states": {
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
-        "format-plugged": "{capacity}% ",
-        "format-alt": "{time} {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", "", ""],
-	"on-update": "$HOME/.config/waybar/scripts/check_battery.sh",
-    },
-
-    "tray": {
-        "icon-size": 16,
-        "spacing": 0
-    },
+  "tray": {
+    "icon-size": 16
+  }
 }
