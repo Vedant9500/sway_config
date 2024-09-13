@@ -114,7 +114,7 @@ chmod +x ~/scripts/screenshot_region_clipboard.sh
 
 ### Screenshots
 
-![Screenshot of Sway with custom configuration](./screenshots/screenshot1.png)
+![Screenshot of Sway with custom configuration](./screenshots/image.png)
 
 ![alt text](image.png)
 
