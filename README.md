@@ -113,9 +113,6 @@ chmod +x ~/scripts/screenshot_region_clipboard.sh
 ```
 
 ### Screenshots
-
-(./screenshots/image.png)
-
 ![alt text](image.png)
 
 ### Contributing
