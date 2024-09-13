@@ -1,5 +1,3 @@
-Here's a `README.md` file for your Sway configuration repository. This README covers an introduction, setup instructions, dependencies, usage, and more. Feel free to adjust it according to your specific needs and add any additional details you think are important.
-
 ---
 
 ## Sway Configuration
