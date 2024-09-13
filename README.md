@@ -15,8 +15,6 @@ This repository contains my personal configuration files for the [Sway](https://
 5. [Keybindings](#keybindings)
 6. [Custom Scripts](#custom-scripts)
 7. [Screenshots](#screenshots)
-8. [Contributing](#contributing)
-9. [License](#license)
 
 ### Features
 
@@ -114,13 +112,5 @@ chmod +x ~/scripts/screenshot_region_clipboard.sh
 
 ### Screenshots
 ![alt text](image.png)
-
-### Contributing
-
-Feel free to fork this repository and make your own changes. Pull requests are welcome for any improvements or additional features.
-
-### License
-
-This repository is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more information.
 
 ---
